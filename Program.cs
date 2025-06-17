@@ -53,7 +53,7 @@ namespace picacomic
 
         private static async Task PunchAsync(string username,string password,int index)
         {
-            Log("=002============================================");
+            Log("=003============================================");
             Log($"开始运行第{index + 1}个账号");
 
             Login login = await PicacomicUrl.Login(username, password);
