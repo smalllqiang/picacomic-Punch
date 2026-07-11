@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using picacomic;
-using picacomic.Http.Response;
+using Picacomic;
+using Picacomic.Http.Response;
 
-namespace picacomic
+namespace PicaSign
 {
     struct Account
     {
@@ -56,18 +56,18 @@ namespace picacomic
             Log("=004============================================");
             Log($"开始运行第{index + 1}个账号");
 
-            Login login = await PicacomicUrl.Login(username, password);
+            Login login = await PicAcgReq.Login(username, password);
             Log("登录成功");
             Header.SetAuthorization(login.Authorization);
             Log("开始获取人物信息");
-            Profile profile = await PicacomicUrl.Profile();
+            Profile profile = await PicAcgReq.Profile();
             Log($"昵称：{profile.User.Name}");
             Log("开始签到");
-            Punch punch = await PicacomicUrl.Punch(); 
+            Punch punch = await PicAcgReq.Punch(); 
             if (punch.PunchSuccess)
             {
                 Log("签到完成");
-                Profile profile_punch = await PicacomicUrl.Profile();
+                Profile profile_punch = await PicAcgReq.Profile();
                 Log($"等级：{profile_punch.User.Level}");
                 Log($"当前经验：{profile_punch.User.Exp}");
             }
